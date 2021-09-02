@@ -1,0 +1,169 @@
+{
+  "get express": {
+    "prefix": "!get",
+    "body": [
+      "router.get('/',async(req,res,next)=>{",
+      "try{$1}",
+      "catch(e){next(e)}",
+      "})"
+    ],
+    "description": "async get in express"
+  },
+  "get id express": {
+    "prefix": "!get_id",
+    "body": [
+      "router.get('/:id,async(req,res,next)=>{",
+      "try{$1}",
+      "catch(e){next(e)}",
+      "})"
+    ],
+    "description": "async get id in express"
+  },
+  "post express": {
+    "prefix": "!post",
+    "body": [
+      "router.post('/,async(req,res,next)=>{",
+      "try{$1}",
+      "catch(e){next(e)}",
+      "})"
+    ],
+    "description": "async post in express"
+  },
+  "put express": {
+    "prefix": "!put",
+    "body": [
+      "router.put('/:id,async(req,res,next)=>{",
+      "try{$1}",
+      "catch(e){next(e)}",
+      "})"
+    ],
+    "description": "async put in express"
+  },
+  "delete express": {
+    "prefix": "!delete",
+    "body": [
+      "router.delete('/:id,async(req,res,next)=>{",
+      "try{$1}",
+      "catch(e){next(e)}",
+      "})"
+    ],
+    "description": "async delete in express"
+  },
+  "init router": {
+    "prefix": "!init_router",
+    "body": [
+      "const express = require('express')",
+      "const router = express.Router();"
+    ],
+    "description": "initial the route"
+  },
+  "full router": {
+    "prefix": "!full_router",
+    "body": [
+      "const express = require('express')",
+      " ",
+      "const router = express.Router();",
+      " ",
+      "router.get('/',async(req,res,next)=>{",
+      "try{$1}",
+      "catch(e){next(e)}",
+      "})",
+      " ",
+      "router.get('/:id,async(req,res,next)=>{",
+      "try{$2}",
+      "catch(e){next(e)}",
+      "})",
+      " ",
+      "router.post('/,async(req,res,next)=>{",
+      "try{$1}",
+      "catch(e){next(e)}",
+      "})",
+      " ",
+      "router.put('/:id,async(req,res,next)=>{",
+      "try{$1}",
+      "catch(e){next(e)}",
+      "})",
+      " ",
+      "router.delete('/:id,async(req,res,next)=>{",
+      "try{$1}",
+      "catch(e){next(e)}",
+      "})",
+      " ",
+      "module.exports=router"
+    ]
+  },
+  "model makeing": {
+    "prefix": "!model",
+    "body": ["const $1=model('$1',new Schema({$2})", ")"]
+  },
+  "validation making": {
+    "prefix": "!validation",
+    "body": [
+      "const $1=($2)=>{",
+      "const schema={$3}",
+      " ",
+      "return Joi.object(scheme).validate($2)}"
+    ]
+  },
+  "init model moudel": {
+    "prefix": "!init_model",
+    "body": [
+      "const Joi = require('joi');",
+      "const { model, Schema } = require('mongoose');"
+    ]
+  },
+  "full model": {
+    "prefix": "!full_model",
+    "body": [
+      "const Joi = require('joi');",
+      "const { model, Schema } = require('mongoose');",
+      "const $1=model('$1',new Schema({$2}))",
+      "const $3=($4)=>{",
+      "const schema={$5}",
+      "return Joi.object(scheme).validate($3)}",
+      "exports.$1=$1",
+      "exports.$3=$3"
+    ]
+  },
+  "full server": {
+    "prefix": "!server",
+    "body": [
+      "const express = require('express');",
+      "const app = express();",
+      "const port = 3000;",
+      "const server = app.listen(port, () =>",
+      "console.log(`Example app listening on port ${port}!`));",
+      "module.exports = server;"
+    ]
+  },
+  "integration test": {
+    "prefix": "!router_test_skeleton",
+    "body": [
+      " describe($1, () => {",
+      "let server",
+      "beforeEach(() => {",
+      "server=require($2)})",
+      "afterEach(async () => {",
+      "server.close();",
+      "$3});",
+      "})"
+    ]
+  },
+  "full rote test section": {
+    "prefix": "!full_test_section",
+    "body": [
+      "describe($1, () => {",
+      "const exec = () => {$2}",
+      "it($3, async () => {$4})",
+      "})"
+    ]
+  },
+  "test descrioption": {
+    "prefix": "!desc",
+    "body": "describe($1, () => {$2})"
+  },
+  "test it": {
+    "prefix": "!it",
+    "body": "it($1, async () => {$2})"
+  }
+}
