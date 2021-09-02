@@ -3,9 +3,13 @@
   "displayName": "node/react/react-native_snippet",
   "description": "this snippet help you to code faster in express and react",
   "publisher": "ArefSho",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "engines": {
     "vscode": "^1.59.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aref13/node-react-react-native-snippet-for-vs-code.git"
   },
   "categories": [
     "Snippets"
