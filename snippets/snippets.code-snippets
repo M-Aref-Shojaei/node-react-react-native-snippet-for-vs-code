@@ -1,6 +1,6 @@
 {
   "get express": {
-    "prefix": "!get",
+    "prefix": "get",
     "body": [
       "router.get('/',async(req,res,next)=>{",
       "try{$1}",
@@ -10,7 +10,7 @@
     "description": "async get in express"
   },
   "get id express": {
-    "prefix": "!get_id",
+    "prefix": "get_id",
     "body": [
       "router.get('/:id,async(req,res,next)=>{",
       "try{$1}",
@@ -20,7 +20,7 @@
     "description": "async get id in express"
   },
   "post express": {
-    "prefix": "!post",
+    "prefix": "post",
     "body": [
       "router.post('/,async(req,res,next)=>{",
       "try{$1}",
@@ -30,7 +30,7 @@
     "description": "async post in express"
   },
   "put express": {
-    "prefix": "!put",
+    "prefix": "put",
     "body": [
       "router.put('/:id,async(req,res,next)=>{",
       "try{$1}",
@@ -40,7 +40,7 @@
     "description": "async put in express"
   },
   "delete express": {
-    "prefix": "!delete",
+    "prefix": "delete",
     "body": [
       "router.delete('/:id,async(req,res,next)=>{",
       "try{$1}",
@@ -50,7 +50,7 @@
     "description": "async delete in express"
   },
   "init router": {
-    "prefix": "!init_router",
+    "prefix": "init_router",
     "body": [
       "const express = require('express')",
       "const router = express.Router();"
@@ -58,7 +58,7 @@
     "description": "initial the route"
   },
   "full router": {
-    "prefix": "!full_router",
+    "prefix": "full_router",
     "body": [
       "const express = require('express')",
       " ",
@@ -93,11 +93,11 @@
     ]
   },
   "model makeing": {
-    "prefix": "!model",
+    "prefix": "model",
     "body": ["const $1=model('$1',new Schema({$2})", ")"]
   },
   "validation making": {
-    "prefix": "!validation",
+    "prefix": "validation",
     "body": [
       "const $1=($2)=>{",
       "const schema={$3}",
@@ -106,14 +106,14 @@
     ]
   },
   "init model moudel": {
-    "prefix": "!init_model",
+    "prefix": "init_model",
     "body": [
       "const Joi = require('joi');",
       "const { model, Schema } = require('mongoose');"
     ]
   },
   "full model": {
-    "prefix": "!full_model",
+    "prefix": "full_model",
     "body": [
       "const Joi = require('joi');",
       "const { model, Schema } = require('mongoose');",
@@ -126,7 +126,7 @@
     ]
   },
   "full server": {
-    "prefix": "!server",
+    "prefix": "server",
     "body": [
       "const express = require('express');",
       "const app = express();",
@@ -137,20 +137,23 @@
     ]
   },
   "integration test": {
-    "prefix": "!router_test_skeleton",
+    "prefix": "router_test_skeleton",
     "body": [
+      "const request=require('supertest')",
       " describe($1, () => {",
       "let server",
+      "let $2",
+      "const fill_$2=async ()=>{$3}",
       "beforeEach(() => {",
-      "server=require($2)})",
+      "server=require($4)})",
       "afterEach(async () => {",
       "server.close();",
-      "$3});",
+      "$5});",
       "})"
     ]
   },
   "full rote test section": {
-    "prefix": "!full_test_section",
+    "prefix": "full_test_section",
     "body": [
       "describe($1, () => {",
       "const exec = () => {$2}",
@@ -159,11 +162,96 @@
     ]
   },
   "test descrioption": {
-    "prefix": "!desc",
+    "prefix": "desc",
     "body": "describe($1, () => {$2})"
   },
   "test it": {
-    "prefix": "!it",
+    "prefix": "it",
     "body": "it($1, async () => {$2})"
+  },
+  "get test": {
+    "prefix": "get-test",
+    "body": [
+      "describe(`GET /`,()=>{",
+      "const exec=()=>{return request(server).get(`$1`)}",
+      "//this test for posibble faliur like don't exist in db",
+      "it(`$2`,async()=>{$3})",
+      " ",
+      "//this test is for success path",
+      "it(`$4`,async()=>{$5})",
+      "})"
+    ]
+  },
+  "get-id-test": {
+    "prefix": "get-id-test",
+    "body": [
+      "describe(`GET /`,()=>{",
+      "let id",
+      "const exec = () => {return request(server).get(`$1/${id}`)}",
+      " ",
+      "//this test is for possibble failur path like don't exist in db",
+      "it(`$2`,async()=>{$3})",
+      " ",
+      "//this test is for success path",
+      "it(`$4`,async()=>{$5})",
+      "})"
+    ]
+  },
+  "post-test": {
+    "prefix": "post-test",
+    "body": [
+      "describe(`POST /`, () => {",
+      "const exec = () => {return request(server).post('$1').send(discount);};",
+      "//this test is for wrong validation case",
+      "it(`$2`, async () => {$3});",
+      " ",
+      "//this test is for success path",
+      "it(`$4`, async () => {$5});",
+      " ",
+      "//this test is for checking db to have posted obj",
+      "it(`$5`, async () => {$6});",
+      "});"
+    ]
+  },
+  "Put-test": {
+    "prefix": "put-test",
+    "body": [
+      "describe(`PUT /:id`, () => {",
+      "let id;",
+      "let $1",
+      "beforeEach(() => {update_$1 = { ...$1}})",
+      "const exec = () => {return request(server).put(`$2/${id}`).send(update_$1)}",
+      " ",
+      "//this test is for wrong validation path",
+      "it(`$3`, async () => {$4});",
+      " ",
+      "//this test is for wrong id path",
+      "it(`$5`, async () => {$6});",
+      " ",
+      "//this test is for successful path",
+      "it(`$7`, async () => {$8});",
+      " ",
+      "//this test is for check the db is updated",
+      "it(`$9`, async () => {$10});",
+      "});"
+    ]
+  },
+  "delete-test": {
+    "prefix": "delete-test",
+    "body": [
+      "describe(`DELETE /:id`, () => {",
+      "let id;",
+      "const exec = () => {return request(server).delete(`$1/${id}`)}",
+      " ",
+      "//this test is for wrong id case",
+      "it(`$2`,async()=>{$3})",
+      " ",
+      "//this test is for successful path",
+      "it(`$4`,async()=>{$5})",
+      " ",
+      "//this is for checking the db for deleted record",
+      "it(`$6`,async()=>{$7})",
+      "});"
+    ]
   }
 }
